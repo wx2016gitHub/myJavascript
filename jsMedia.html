@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo My Javascript Media</title>
+	<meta charset="UTF-8" />
+    <style>
+              body {  background-image: -webkit-radial-gradient(circle,  white,lightgreen );
+                      background-image: radial-gradient(circle,  white, lightgreen);
+                   }     
+    </style>
+</head>
+<body>
+    <div>
+          <h1>Demo My Javascript</h1>
+    </div>
+     
+    <script>
+        var myDiv0 = document.getElementsByTagName("div")[0];
+        document.getElementsByTagName("div")[0].style.position = "absolute";
+        document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        document.getElementsByTagName("div")[0].style.width = "500px";
+        document.getElementsByTagName("div")[0].style.height = "400px";
+        document.getElementsByTagName("div")[0].style.fontFamily = "Arial";
+
+        myDiv0.appendChild(document.createElement("h1"));
+        document.getElementsByTagName("h1")[0].style.position = "relative";
+        document.getElementsByTagName("h1")[0].style.top = 0 + "px";
+        document.getElementsByTagName("h1")[0].style.left = 0 + "px";
+        document.getElementsByTagName("h1")[0].style.fontSize= "30px";
+        document.getElementsByTagName("h1")[0].style.color = "darkgreen";
+        document.getElementsByTagName("h1")[0].style.textAlign = "center";
+
+        // show all <div>
+        var divLeft = document.createElement("div");
+        var divVideo = document.createElement("div");
+        var divRight = document.createElement("div");
+        myDiv0.appendChild(divLeft);
+        myDiv0.appendChild(divVideo);
+        myDiv0.appendChild(divRight);
+        
+        var divSetting = [
+             { position: "relative", top: "0px", left: "40px", width: "50px", height: "240px", float: "left" },
+             { position: "relative", top: "0px", left: "40px", width: "320px", height: "240px", float: "left" },
+             { position: "relative", top: "0px", left: "40px", width: "50px", height: "240px", float: "left" }
+        ];
+        
+        var tempDiv;
+        for (var i in divSetting) {
+            if (i == 0) {
+                tempDiv = divLeft;
+                tempDiv.style.background = "-webkit-linear-gradient(left,steelblue, white)";
+                tempDiv.style.background = "linear-gradient( to left,steelblue, white)";
+            }
+            else if (i == 1) {
+                tempDiv = divVideo;
+                tempDiv.style.backgroundColor = "steelblue";
+            }
+            else if (i == 2) {
+                tempDiv = divRight;
+                tempDiv.style.background = "-webkit-linear-gradient(right,steelblue, white)";
+                tempDiv.style.background = "linear-gradient( to right,steelblue, white)";
+            }
+            tempDiv.style.position = divSetting[i].position;
+            tempDiv.style.top = divSetting[i].top;
+            tempDiv.style.left = divSetting[i].left;
+            tempDiv.style.width = divSetting[i].width;
+            tempDiv.style.height = divSetting[i].height;
+            tempDiv.style.float = divSetting[i].float;
+        }
+
+        //show  <Symbol>
+        var prevSymbol = document.createTextNode( decodeURI("%C2%AB") );
+        var myPrev = document.createElement("h2");
+        myPrev.appendChild(prevSymbol);
+        divLeft.appendChild(myPrev);
+        setSymbol(myPrev);
+  
+        var nextSymbol = document.createTextNode(decodeURI("%C2%BB"));
+        var myNext = document.createElement("h2");
+        myNext.appendChild(nextSymbol);
+        divRight.appendChild(myNext);
+        setSymbol(myNext);
+        
+        function setSymbol( elem ) {
+            elem.style.position = "relative";
+            elem.style.left = 11 + "px";
+            elem.style.top = 30 + "px";
+            elem.style.fontSize = 48 + "px";
+            elem.style.color = "white";
+        }
+ 
+        var myMovie = document.createElement("VIDEO");
+        divVideo.appendChild(myMovie);
+        myMovie.load();
+        myMovie.width = 320;
+        myMovie.height = 240;
+        myMovie.poster = "./source/poster.png";
+        if (myMovie.canPlayType("video/mp4")) {
+            myMovie.src = "./source/demoMovie1.mp4";
+        }
+        else {
+            myMovie.src = "./source/demoMovie1.ogg";
+        }
+        myMovie.loop = true;
+        myMovie.muted = true;
+        myMovie.autopaly = true;
+        myMovie.play();
+ 
+        var divAudio = document.createElement("div");
+        myDiv0.appendChild(divAudio);
+        divAudio.style.clear = "both";
+        divAudio.style.position = "relative";
+        divAudio.style.top = 60 + "px";
+        divAudio.style.width = 320 + "px";
+
+        var myAudio = document.createElement("AUDIO");
+
+        if (myAudio.canPlayType("audio/mp3")) {
+            myAudio.src = "./source/demoSong.mp3";
+        } 
+        else {
+            myAudio.src = "./source/demoSong.ogg";
+        }
+        myAudio.controls = true;
+        myAudio.loop = true;
+        myAudio.autopaly = true;
+        divVideo.appendChild(myAudio);
+        myAudio.play();
+        myAudio.style.width = 320 + "px";
+ 
+        // click event handler
+        var index = 1;
+        if (encodeURIComponent(myPrev.innerHTML).indexOf("%C2%AB") != -1) {
+            myPrev.addEventListener("click", function () {
+                myMovie.pause();
+                if (index > 1)
+                    index--;
+                else if (index == 1)
+                    index = 4;
+                myMovie.src = "./source/demoMovie" + index + ".mp4" ;
+                myMovie.load();
+                myMovie.play();
+            });
+        }
+        if (encodeURIComponent(myNext.innerHTML).indexOf('%C2%BB') != -1) {
+            myNext.addEventListener("click", function () {
+                myMovie.pause();
+                if (index < 4)
+                    index++;
+                else if (index == 4)
+                    index = 1;
+                myMovie.src = "./source/demoMovie" + index + ".mp4";
+                myMovie.load();
+                myMovie.play();
+            });
+        }
+
+        myDiv0.appendChild(document.createElement("p"));
+        document.getElementsByTagName("p")[0].style.position = "absolute";
+        document.getElementsByTagName("p")[0].style.bottom = "0px";
+        document.getElementsByTagName("p")[0].style.left = "160px";
+        document.getElementsByTagName("p")[0].style.fontSize = "11px";
+        document.getElementsByTagName("p")[0].style.fontFamily = "Helretica";
+        document.getElementsByTagName("p")[0].style.color = "darkgreen";
+        document.getElementsByTagName("p")[0].innerHTML = "@copyright Wendy Xiao May,2016";
+
+        var temp = document.getElementsByTagName("div")[0].style.height;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerHeight)
+            document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(temp.slice(0, temp.length - 2))) / 2 + "px";
+        temp = document.getElementsByTagName("div")[0].style.width;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerWidth)
+            document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.left = (window.innerWidth - (temp.slice(0, temp.length - 2))) / 2 + "px";
+
+        window.addEventListener("resize", function () {
+            var H = document.getElementsByTagName("div")[0].style.height;
+            var W = document.getElementsByTagName("div")[0].style.width;
+
+            if (Number(H.slice(0, H.length - 2)) >= window.innerHeight)
+                document.getElementsByTagName("div")[0].style.top = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.top = (window.innerHeight -  Number(H.slice(0, H.length - 2))) / 2 + "px";
+
+            if (Number(W.slice(0, W.length - 2)) >= window.innerWidth)
+                document.getElementsByTagName("div")[0].style.left = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(W.slice(0, W.length - 2))) / 2 + "px";
+        });
+    </script>
+</body>
+</html>
+<!-- wendy xiao test javascript code 5/24/2016 -->

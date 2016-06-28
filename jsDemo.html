@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Javascript Test</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {  background-image: -webkit-radial-gradient(circle, lightsalmon,white );
+                background-image: radial-gradient(circle, lightsalmon,white );}
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Javascript</h1>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script>
+        var myAudio = document.createElement("AUDIO");
+        if (myAudio.canPlayType("audio/mp3")) {
+            myAudio.src = "./source/music.mp3";
+        }
+        myAudio.controls = false;
+        myAudio.loop = true;
+        myAudio.autopaly = true;
+        document.body.appendChild(myAudio);
+        myAudio.play();
+
+        document.querySelectorAll("div")[0].style.position = "absolute";
+        document.querySelectorAll("div")[0].style.width = "400px";
+        document.querySelectorAll("div")[0].style.height = "350px";
+        document.querySelectorAll("div")[0].style.border = "thick solid darkgreen";
+        document.querySelectorAll("div")[0].style.background = "url('./source/marbleWhite.jpg') repeat";
+        document.querySelectorAll("div")[0].style.fontFamily = "Arial";
+        document.querySelectorAll("div")[0].style.borderRadius = "30px";
+        document.querySelectorAll("div")[0].style.borderWidth = "7px";
+
+        var temp = document.getElementsByTagName("div")[0].style.height;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerHeight)
+             document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        else
+             document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(temp.slice(0, temp.length - 2)) )/ 2 + 7 + "px";
+        temp = document.getElementsByTagName("div")[0].style.width;
+        if ( Number(temp.slice(0, temp.length - 2)) >= window.innerWidth)
+            document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(temp.slice(0, temp.length - 2))) / 2 + 7 + "px";
+
+        var colorBarWidth = 35;
+        var colorBarHeight = "80px";
+
+        document.getElementsByTagName("h1")[0].style.position = "relative";
+        document.getElementsByTagName("h1")[0].style.padding = "5px";
+        document.getElementsByTagName("h1")[0].style.top = "40px";
+
+        document.getElementsByTagName("h1")[0].style.left = "60px";
+        var index = colorBarWidth * 8 - 10;
+        document.getElementsByTagName("h1")[0].style.width = index + "px";
+
+        document.getElementsByTagName("h1")[0].style.textAlign = "center";
+        document.getElementsByTagName("h1")[0].style.fontSize = "35px";
+        document.getElementsByTagName("h1")[0].style.color = "darkgreen";
+        document.getElementsByTagName("h1")[0].style.textShadow = "1px 2px 3px green";
+
+        var divSetting =  {
+            "div1": { top: "50px", left: "60px", backgroundColor:"lightpink" },
+            "div2": { top: "50px", left: "60px", backgroundColor: "khaki" },
+            "div3": { top: "50px", left: "60px", backgroundColor: "lightgreen" },
+            "div4": { top: "50px", left: "60px", backgroundColor: "lightblue" }
+        };
+
+        parseDiv( 1, divSetting.div1 );
+        parseDiv( 2, divSetting.div2 );
+        parseDiv( 3, divSetting.div3 );
+        parseDiv( 4, divSetting.div4 );
+
+        function parseDiv(i, divData) {
+                 settingDiv(document.getElementsByTagName("div")[i],
+                           "relative",
+                           "left",
+                           divData.top,
+                           divData.left,
+                           colorBarWidth+"px",
+                           colorBarHeight,
+                           divData.backgroundColor
+                           );
+        }
+
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("div"));
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("div"));
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("div"));
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("div"));
+
+        var settingMore = [
+            { div: 5, setting: { position: 'relative', float: "left", backgroundColor: 'lightsalmon' } },
+            { div: 6, setting: { position: 'relative', float: "left", backgroundColor: 'gold' } },
+            { div: 7, setting: { position: 'relative', float: "left", backgroundColor: 'yellowgreen' } },
+            { div: 8, setting: { position: 'relative', float: "left", backgroundColor: 'lightgray' } }
+        ];
+
+        for (var i in settingMore) {
+            settingDiv( document.getElementsByTagName("div")[settingMore[i].div],
+                        settingMore[i].setting.position,
+                        settingMore[i].setting.float,
+                        document.getElementsByTagName("div")[1].style.top,
+                        document.getElementsByTagName("div")[1].style.left,
+                        document.getElementsByTagName("div")[1].style.width,
+                        document.getElementsByTagName("div")[1].style.height,
+                        settingMore[i].setting.backgroundColor
+                      );
+        }
+
+        function settingDiv( divElem, position, float, top, left, width, height, backgroundColor) {
+                             divElem.style.position =  position;
+                             divElem.style.top = top;
+                             divElem.style.left = left;
+                             divElem.style.width = width;
+                             divElem.style.height = height;
+                             divElem.style.float = float;
+                             divElem.style.backgroundColor = backgroundColor;
+        }
+ 
+        var colorTimer = ["darkred", "gold", "yellow", "darkgreen", "black", "darkblue", "purple", "white"];
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("p"));
+        document.getElementsByTagName("p")[0].style.clear = "both";
+        document.getElementsByTagName("p")[0].style.position = "relative";
+        document.getElementsByTagName("p")[0].style.top = "70px";
+        document.getElementsByTagName("p")[0].style.fontSize = "30px";
+        document.getElementsByTagName("p")[0].style.textAlign = "center";
+        document.getElementsByTagName("p")[0].style.fontFamily = "Helretica";
+        document.getElementsByTagName("p")[0].style.fontWeight = "bold";
+        document.getElementsByTagName("p")[0].style.color = "darkred";
+        var showTime = new Date();
+        document.getElementsByTagName("p")[0].innerHTML = showTime.toLocaleTimeString();
+ 
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("p"));
+        document.getElementsByTagName("p")[1].style.clear = "both";
+        document.getElementsByTagName("p")[1].style.position = "absolute";
+        document.getElementsByTagName("p")[1].style.bottom = "0px";
+        document.getElementsByTagName("p")[1].style.left = "130px";
+        document.getElementsByTagName("p")[1].style.fontSize = "9px";
+        document.getElementsByTagName("p")[1].style.fontFamily = "Helretica";
+        document.getElementsByTagName("p")[1].style.color = "darkgreen";
+        document.getElementsByTagName("p")[1].innerHTML = "@copyright Wendy Xiao May,2016";
+
+        document.getElementsByTagName("div")[0].appendChild(document.createElement("div"));
+ 
+        document.getElementsByTagName("div")[9].style.position = "absolute";
+        document.getElementsByTagName("div")[9].style.top = "0px";
+        document.getElementsByTagName("div")[9].style.left = "0px";
+        document.getElementsByTagName("div")[9].style.width = "50px";
+        document.getElementsByTagName("div")[9].style.height = "50px";
+        document.getElementsByTagName("div")[9].style.backgroundImage = "url('./source/peacock.jpeg')";
+        temp = document.getElementsByTagName("div")[9].style.width;
+        document.getElementsByTagName("div")[9].style.borderRadius = Number(temp.slice(0, temp.length - 2)) / 2 + "px";
+        document.getElementsByTagName("div")[9].style.opacity = "0.7";
+        document.getElementsByTagName("div")[9].style.transform = "rotateY(180deg)";
+ 
+        var colorSet = [];
+        for (var i = 0; i < document.getElementsByTagName("div").length-2; i++) {
+            colorSet[i] = document.getElementsByTagName("div")[i + 1].style.backgroundColor;
+        }
+
+        var setColor = setInterval(changeColor, 1000);
+        index = 0;
+        function changeColor() {
+            var i = 0, j;
+            index++;
+            if (index == colorSet.length)
+                index = 0;
+            j = index;
+            for (i = 0; i < colorSet.length; i++) {
+                document.getElementsByTagName("div")[i+1].style.backgroundColor = colorSet[j];
+                j++;
+                if ( j == colorSet.length )
+                    j = 0;
+            }
+            document.getElementsByTagName("h1")[0].style.backgroundColor = colorSet[index];
+            showTime = new Date();
+            document.getElementsByTagName("p")[0].innerHTML = showTime.toLocaleTimeString();
+        }
+
+        temp = document.getElementsByTagName("div")[9].style.top;
+        var positionTop = Number(temp.slice(0, temp.length - 2));
+        var positionTop = 0;
+        var sideMargin = positionTop;
+        temp = document.getElementsByTagName("div")[9].style.left;
+        var positionLeft = Number(temp.slice(0, temp.length - 2));
+        temp = document.getElementsByTagName("div")[9].style.width;
+        var pkWidth = Number(temp.slice(0, temp.length - 2));
+        temp = document.getElementsByTagName("div")[0].style.width;
+        var runningWidth = Number(temp.slice(0, temp.length - 2));
+        temp = document.getElementsByTagName("div")[0].style.height;
+        var runningHeight = Number(temp.slice(0, temp.length - 2));
+
+        var direction = 1;
+        var timeColor = 1;
+        var setRun = setInterval(pkRunning, 9);
+        function pkRunning() {
+           switch (direction) {
+                case 1:
+                    if (( positionLeft + pkWidth + sideMargin ) >= runningWidth ) {
+                        direction = 2;
+                        document.getElementsByTagName("div")[9].style.transform = "rotateY(0deg)";
+                       }
+                    else
+                        positionLeft++;
+                    break;
+                 case 2:
+                     if ((positionTop + pkWidth + sideMargin + 15 ) >= runningHeight) {
+                          direction = 3;
+                          document.getElementsByTagName("div")[9].style.width = 66 + "px";
+                          document.getElementsByTagName("div")[9].style.height = 66 + "px";
+                          document.getElementsByTagName("div")[9].style.borderRadius = 33 + "px";
+                          positionLeft -= 15;
+                      }
+                     else
+                         positionTop++;
+                    break;
+                 case 3:
+                     if (positionLeft <= sideMargin) {
+                         direction = 4;
+                         document.getElementsByTagName("div")[9].style.transform = "rotateY(180deg)";
+                         document.getElementsByTagName("div")[9].style.width = 50 + "px";
+                         document.getElementsByTagName("div")[9].style.height = 50 + "px";
+                         document.getElementsByTagName("div")[9].style.borderRadius = 25 + "px";
+                     }
+                     else
+                         positionLeft--;
+                    break;
+                 case 4:
+                     if (positionTop <= sideMargin) {
+                         direction = 1;
+                         document.getElementsByTagName("p")[0].style.color = colorTimer[timeColor ];
+                         timeColor ++;
+                         if (timeColor == 8) timeColor = 0;
+                         document.getElementsByTagName("div")[9].style.transform = "rotateY(180deg)";
+                     }
+                     else
+                         positionTop--;
+                    break;
+            }
+            document.getElementsByTagName("div")[9].style.top = positionTop +"px";
+            document.getElementsByTagName("div")[9].style.left = positionLeft +"px";
+        }
+
+        window.addEventListener("resize", function () {
+            var H = document.getElementsByTagName("div")[0].style.height;
+            var W = document.getElementsByTagName("div")[0].style.width;
+
+            if ( Number(H.slice(0, H.length - 2)) >= window.innerHeight)
+                document.getElementsByTagName("div")[0].style.top = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(H.slice(0, H.length - 2))) / 2 + 7 + "px";
+
+            if ( Number(W.slice(0, W.length - 2)) >= window.innerWidth)
+                document.getElementsByTagName("div")[0].style.left = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(W.slice(0, W.length - 2))) / 2 + 7 + "px";
+        });
+
+        document.body.addEventListener("click", function () {
+             document.getElementsByTagName("p")[0].innerHTML = "animation end";
+             clearInterval(setColor);
+             clearInterval(setRun);
+        });
+    </script>
+</body>
+</html>
+<!--  @copyright wendy xiao test javascript code 5/20/2016  -->
